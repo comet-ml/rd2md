@@ -158,12 +158,12 @@ def remove_function_call(name, text):
 def clean(string):
     # \link[=create_experiment]{create_experiment()}
     string = re.sub(
-        "\\\\code{\\\\link[=([^]]*?)]{([^}]*?)}}", "[`\\2`](../\\1)", string
+        "\\\\code\{\\\\link\[=([^\]]*?)\]\{([^\}]*?)\}\}", "[`\\2`](../\\1)", string
     )
     # \link{LoggedArtifact}
-    string = re.sub("\\\\link{([^}]*?)}", "[\\1](./\\1)", string)
+    string = re.sub("\\\\link\{([^\}]*?)\}", "[\\1](./\\1)", string)
     # Add the code indicator: \code{...}
-    string = re.sub("\\\\code{([^}]*?)}", "`\\1`", string)
+    string = re.sub("\\\\code\{([^\}]*?)\}", "`\\1`", string)
     return string
 
 
