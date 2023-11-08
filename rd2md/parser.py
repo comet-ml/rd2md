@@ -160,6 +160,8 @@ def clean(string):
     string = re.sub(
         "\\\\code\{\\\\link\[=([^\]]*?)\]\{([^\}]*?)\}\}", "[`\\2`](../\\1)", string
     )
+    # \code{\link{LoggedArtifact}}
+    string = re.sub("\\\\code{\\\\link\{([^\}]*?)\}}", "[`\\1`](./\\1)", string)
     # \link{LoggedArtifact}
     string = re.sub("\\\\link\{([^\}]*?)\}", "[\\1](./\\1)", string)
     # Add the code indicator: \code{...}
@@ -249,6 +251,8 @@ def rd2md(file_in, file_out, is_class):
                     if line.startswith("\\item{"):
                         text = line[5:] + " "
                         arg, description = get_curly_contents(2, text, fp_in)
+                        description = description.replace("\n", " ")
+
                         args.append((arg, clean(description)))
                     line = fp_in.readline().rstrip()
                 doc.set_args(args)
