@@ -152,6 +152,7 @@ class Method:
         while line:
             if line.startswith("\\item{"):
                 arg, desc = get_curly_contents(2, line[5:], fp)
+                desc = desc.replace("\n", " ")
                 arguments += "* %s %s\n" % (arg, desc)
             else:
                 pass  # newlines

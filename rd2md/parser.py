@@ -252,7 +252,6 @@ def rd2md(file_in, file_out, is_class):
                         text = line[5:] + " "
                         arg, description = get_curly_contents(2, text, fp_in)
                         description = description.replace("\n", " ")
-
                         args.append((arg, clean(description)))
                     line = fp_in.readline().rstrip()
                 doc.set_args(args)
